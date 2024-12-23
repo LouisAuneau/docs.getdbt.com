@@ -25,7 +25,7 @@ import SetUpPages from '/snippets/_setup-pages-intro.md';
 <SetUpPages meta={frontMatter.meta} />
 
 
-If connecting to Databricks via ODBC driver, it requires `pyodbc`. Depending on your system, you can install it seperately or via pip. See the [`pyodbc` wiki](https://github.com/mkleehammer/pyodbc/wiki/Install) for OS-specific installation details.
+If connecting to Databricks via ODBC driver, it requires `pyodbc`. Depending on your system, you can install it separately or via pip. See the [`pyodbc` wiki](https://github.com/mkleehammer/pyodbc/wiki/Install) for OS-specific installation details.
 
 If connecting to a Spark cluster via the generic thrift or http methods, it requires `PyHive`.
 
@@ -197,14 +197,9 @@ connect_retries: 3
 
 </File>
 
-
-
-<VersionBlock firstVersion="1.7">
-
 ### Server side configuration
 
 Spark can be customized using [Application Properties](https://spark.apache.org/docs/latest/configuration.html). Using these properties the execution can be customized, for example, to allocate more memory to the driver process. Also, the Spark SQL runtime can be set through these properties. For example, this allows the user to [set a Spark catalogs](https://spark.apache.org/docs/latest/configuration.html#spark-sql).
-</VersionBlock>
 
 ## Caveats
 

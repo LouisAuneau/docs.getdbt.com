@@ -33,7 +33,7 @@ Learn how to use dbt Cloud's features to help your team ship timely and quality 
 
 <Card
     title="Deploy jobs"
-    body="Create and schedule jobs for the dbt Cloud scheduler to run."
+    body="Create and schedule jobs for the job scheduler to run. <br /><br />Runs on a schedule, by API, or after another job completes."
     link="/docs/deploy/deploy-jobs"
     icon="dbt-bit"/>
 
@@ -77,6 +77,12 @@ Learn how to use dbt Cloud's features to help your team ship timely and quality 
     title="Job notifications"
     body="Receive email or Slack channel notifications when a job run succeeds, fails, or is canceled so you can respond quickly and begin remediation if necessary."
     link="/docs/deploy/job-notifications"
+    icon="dbt-bit"/>
+
+<Card
+    title="Model notifications"
+    body="Receive email notifications in real time about issues encountered by your models and tests while a job is running. "
+    link="/docs/deploy/model-notifications"
     icon="dbt-bit"/>
 
 <Card

@@ -7,6 +7,13 @@ sidebar: null
 
 # Multi-factor authentication
 
+:::important
+
+
+dbt Cloud enforces multi-factor authentication (MFA) for all users with username and password credentials. If MFA is not set up, you will see a notification bar prompting you to configure one of the supported methods when you log in. If you do not, you will have to configure MFA upon subsequent logins, or you will be unable to access dbt Cloud.
+
+:::
+
 dbt Cloud provides multiple options for multi-factor authentication (MFA). MFA provides an additional layer of security to username and password logins for Developer and Team plan accounts. The available MFA methods are:
 
 - SMS verification code (US-based phone numbers only)
@@ -51,7 +58,7 @@ Choose the next steps based on your preferred enrollment selection:
 
 2. Follow the instructions in the modal window and click **Use security key**.
 
-<Lightbox src="/img/docs/dbt-cloud/create-security-key.png" title="Example of the Seciruty Key activation window." />
+<Lightbox src="/img/docs/dbt-cloud/create-security-key.png" title="Example of the Security Key activation window." />
 
 3. Scan the QR code or insert and touch activate your USB key to begin the process. Follow the on-screen prompts.
 

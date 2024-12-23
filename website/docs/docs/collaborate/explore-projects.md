@@ -3,7 +3,7 @@ title: "Discover data with dbt Explorer"
 sidebar_label: "Discover data with dbt Explorer"
 description: "Learn about dbt Explorer and how to interact with it to understand, improve, and leverage your dbt projects."
 image: /img/docs/collaborate/dbt-explorer/example-project-lineage-graph.png
-pagination_next: "docs/collaborate/access-from-dbt-cloud"
+pagination_next: "docs/collaborate/data-health-signals"
 pagination_prev: null
 ---
 
@@ -20,17 +20,18 @@ import ExplorerCourse from '/snippets/_explorer-course-link.md';
 - You have at least one successful job run in the deployment environment. Note that [CI jobs](/docs/deploy/ci-jobs) do not update dbt Explorer.
 - You are on the dbt Explorer page. To do this, select **Explore** from the navigation in dbt Cloud.
 
-## Overview page <Lifecycle status="beta" />
+## Overview page <Lifecycle status="preview" />
 
-Navigate the dbt Explorer overview page to access your project's resources and metadata, available in beta. The page includes the following sections:
+Navigate the dbt Explorer overview page to access your project's resources and metadata. The page includes the following sections:
 
 - **Search bar** &mdash; [Search](#search-resources) for resources in your project by keyword. You can also use filters to refine your search results.
 - **Sidebar** &mdash; Use the left sidebar to access model [performance](/docs/collaborate/model-performance), [project recommendations](/docs/collaborate/project-recommendations) in the **Project details** section. Browse your project's [resources, file tree, and database](#browse-with-the-sidebar) in the lower section of the sidebar.
 - **Lineage graph** &mdash; Explore your project's or account's [lineage graph](#project-lineage) to visualize the relationships between resources.
 - **Latest updates** &mdash; View the latest changes or issues related to your project's resources, including the most recent job runs, changed properties, lineage, and issues.
-- **Marts and public models** &mdash; View the [marts](/best-practices/how-we-structure/1-guide-overview#guide-structure-overview) and [public models](/docs/collaborate/govern/model-access#access-modifiers) in your project. 
+- **Marts and public models** &mdash; View the [marts](/best-practices/how-we-structure/1-guide-overview#guide-structure-overview) and [public models](/docs/collaborate/govern/model-access#access-modifiers) in your project. You can also navigate to all public models in your account through this view.
 - **Model query history** &mdash; Use [model query history](/docs/collaborate/model-query-history) to track consumption queries on your models for deeper insights.
 - **Auto-exposures** &mdash; [Set up and view auto-exposures](/docs/collaborate/auto-exposures) to automatically expose relevant data models from Tableau to enhance visibility.
+- **Data health signals** &mdash; View the [data-health-signals](/docs/collaborate/data-health-signals) for each resource to understand its health and performance.
 
 <Lightbox src="/img/docs/collaborate/dbt-explorer/explorer-main-page.gif" width="100%" title="Access dbt Explorer from dbt Cloud by clicking Explore in the navigation."/>
 
@@ -96,7 +97,7 @@ To explore the lineage graphs of tests and macros, view [their resource details 
 
 ### Example of full lineage graph
 
-Example of exploring the `order_items` model in the project's lineage graph:
+Example of exploring a model in the project's lineage graph:
 
 <Lightbox src="/img/docs/collaborate/dbt-explorer/example-project-lineage-graph.png" width="100%" title="Example of full lineage graph" />
 
@@ -163,16 +164,16 @@ Under the the **Models** option, you can filter on model properties (access or m
 </Expandable>
 
 ### Example of keyword search
-Example of results from searching on the keyword `item` and applying the filters models, description, and code:
+Example of results from searching on the keyword `customers` and applying the filters models, description, and code. [Data health signals](/docs/collaborate/data-health-signals) are visible to the right of the model name in the search results.
 
 <Lightbox src="/img/docs/collaborate/dbt-explorer/example-keyword-search.png" width="100%" title="Example of keyword search" />
-
 
 ## Browse with the sidebar
 
 From the sidebar, you can browse your project's resources, its file tree, and the database. 
 
 - **Resources** tab &mdash; All resources in the project organized by type. Select any resource type in the list and all those resources in the project will display as a table in the main section of the page. For a description on the different resource types (like models, metrics, and so on), refer to [About dbt projects](/docs/build/projects).
+  - [Data health signals](/docs/collaborate/data-health-signals) are visible to the right of the resource name under the **Health** column.
 - **File Tree** tab &mdash; All resources in the project organized by the file in which they are defined. This mirrors the file tree in your dbt project repository.
 - **Database** tab &mdash; All resources in the project organized by the database and schema in which they are built. This mirrors your data platform's structure that represents the [applied state](/docs/dbt-cloud-apis/project-state) of your project. 
 
@@ -201,6 +202,7 @@ In the upper right corner of the resource details page, you can:
 
 <Expandable alt_header="What details are available for a model?">
 
+- **Data health signals** &mdash; [Data health signals](/docs/collaborate/data-health-signals) offer a quick, at-a-glance view of data health. These icons indicate whether a model is Healthy, Caution, Degraded, or Unknown. Hover over an icon to view detailed information about the model's health.
 - **Status bar** (below the page title) &mdash; Information on the last time the model ran, whether the run was successful, how the data is materialized, number of rows, and the size of the model. 
 - **General** tab includes:
     - **Lineage** graph &mdash; The model’s lineage graph that you can interact with. The graph includes one upstream node and one downstream node from the model. Click the Expand icon in the graph's upper right corner to view the model in full lineage graph mode.
@@ -217,6 +219,7 @@ In the upper right corner of the resource details page, you can:
 <Expandable alt_header="What details are available for an exposure?">
 
 - **Status bar** (below the page title) &mdash; Information on the last time the exposure was updated. 
+- **Data health signals** &mdash; [Data health signals](/docs/collaborate/data-health-signals) offer a quick, at-a-glance view of data health. These icons indicate whether a resource is Healthy, Caution, or Degraded. Hover over an icon to view detailed information about the exposure's health.
 - **General** tab includes:
     - **Data health** &mdash; The status on data freshness and data quality.
     - **Status** section &mdash; The status on data freshness and data quality.
@@ -250,6 +253,7 @@ Example of the Tests view:
 <Expandable alt_header="What details are available for each source table within a source collection?">
 
 - **Status bar** (below the page title) &mdash; Information on the last time the source was updated and the number of tables the source uses. 
+- **Data health signals** &mdash; [Data health signals](/docs/collaborate/data-health-signals) offer a quick, at-a-glance view of data health. These icons indicate whether a resource is Healthy, Caution, or Degraded. Hover over an icon to view detailed information about the source's health.
 - **General** tab includes:
     - **Lineage** graph &mdash; The source’s lineage graph that you can interact with. The graph includes one upstream node and one downstream node from the source. Click the Expand icon in the graph's upper right corner to view the source in full lineage graph mode.
     - **Description** section &mdash; A description of the source.
@@ -269,6 +273,7 @@ Example of the details view for the model `customers`:<br /> <Lightbox src="/img
 <Lightbox src="/img/docs/cloud-integrations/auto-exposures/explorer-lineage2.jpg" width="95%" title="Example of auto-exposure details for the Tableau exposure."/>
 
 </DocCarousel>
+
 
 ## Staging environment
 

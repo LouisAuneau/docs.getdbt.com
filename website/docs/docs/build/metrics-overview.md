@@ -15,15 +15,15 @@ This article explains the different supported metric types you can add to your d
 
 <VersionBlock firstVersion="1.8">
 
-| Parameter | Description | Type |
-| --------- | ----------- | ---- |
-| `name` | Provide the reference name for the metric. This name must be a unique metric name and can consist of lowercase letters, numbers, and underscores.  | Required |
-| `description` | Describe your metric.   | Optional |
-| `type` | Define the type of metric, which can be `conversion`, `cumulative`, `derived`, `ratio`, or `simple`. | Required |
-| `type_params` | Additional parameters used to configure metrics. `type_params` are different for each metric type. | Required |
-| `label` | Required string that defines the display value in downstream tools. Accepts plain text, spaces, and quotes (such as `orders_total` or `"orders_total"`).  | Required |
-| `config` | Use the [`config`](/reference/resource-properties/config) property to specify configurations for your metric. Supports [`meta`](/reference/resource-configs/meta), [`group`](/reference/resource-configs/group), and [`enabled`](/reference/resource-configs/enabled) configurations.  | Optional |
-| `filter` | You can optionally add a [filter](#filters) string to any metric type, applying filters to dimensions, entities, time dimensions, or other metrics during metric computation. Consider it as your WHERE clause.   | Optional |
+| Parameter | Description | Required | Type |
+| --------- | ----------- | ---- | ---- |
+| `name` | Provide the reference name for the metric. This name must be a unique metric name and can consist of lowercase letters, numbers, and underscores.  | Required | String |
+| `description` | Describe your metric.   | Optional | String |
+| `type` | Define the type of metric, which can be `conversion`, `cumulative`, `derived`, `ratio`, or `simple`. | Required | String |
+| `type_params` | Additional parameters used to configure metrics. `type_params` are different for each metric type. | Required | Dict |
+| `label` | Required string that defines the display value in downstream tools. Accepts plain text, spaces, and quotes (such as `orders_total` or `"orders_total"`).  | Required | String |
+| `config` | Use the [`config`](/reference/resource-properties/config) property to specify configurations for your metric. Supports [`meta`](/reference/resource-configs/meta), [`group`](/reference/resource-configs/group), and [`enabled`](/reference/resource-configs/enabled) configurations.  | Optional | Dict |
+| `filter` | You can optionally add a [filter](#filters) string to any metric type, applying filters to dimensions, entities, time dimensions, or other metrics during metric computation. Consider it as your WHERE clause.   | Optional | String |
 
 Here's a complete example of the metrics spec configuration:
 
@@ -52,16 +52,16 @@ metrics:
 
 <VersionBlock lastVersion="1.7">
 
-| Parameter | Description | Type |
-| --------- | ----------- | ---- |
-| `name` | Provide the reference name for the metric. This name must be unique amongst all metrics.   | Required |
-| `description` | Describe your metric.   | Optional |
-| `type` | Define the type of metric, which can be `simple`, `ratio`, `cumulative`, or `derived`.  | Required |
-| `type_params` | Additional parameters used to configure metrics. `type_params` are different for each metric type. | Required |
-| `config` | Provide the specific configurations for your metric.   | Optional |
-| `meta` | Use the [`meta` config](/reference/resource-configs/meta) to set metadata for a resource.  | Optional |
-| `label` | Required string that defines the display value in downstream tools. Accepts plain text, spaces, and quotes (such as `orders_total` or `"orders_total"`).   | Required |
-| `filter` | You can optionally add a filter string to any metric type, applying filters to dimensions, entities, or time dimensions during metric computation. Consider it as your WHERE clause.   | Optional |
+| Parameter | Description | Required | Type  |
+| --------- | ----------- | ---- | ---- |
+| `name` | Provide the reference name for the metric. This name must be unique amongst all metrics.   | Required | String |
+| `description` | Describe your metric.   | Optional | String |
+| `type` | Define the type of metric, which can be `simple`, `ratio`, `cumulative`, or `derived`.  | Required | String |
+| `type_params` | Additional parameters used to configure metrics. `type_params` are different for each metric type. | Required | Dict |
+| `config` | Provide the specific configurations for your metric.   | Optional | Dict |
+| `meta` | Use the [`meta` config](/reference/resource-configs/meta) to set metadata for a resource.  | Optional | String |
+| `label` | Required string that defines the display value in downstream tools. Accepts plain text, spaces, and quotes (such as `orders_total` or `"orders_total"`).   | Required | String |
+| `filter` | You can optionally add a filter string to any metric type, applying filters to dimensions, entities, or time dimensions during metric computation. Consider it as your WHERE clause.   | Optional | String |
 
 Here's a complete example of the metrics spec configuration:
 
@@ -92,7 +92,19 @@ import SLCourses from '/snippets/_sl-course.md';
 
 ## Default granularity for metrics
 
-It's possible to define a default time granularity for metrics if it's different from the granularity of the default aggregation time dimensions (`metric_time`). This is useful if your time dimension has a very fine grain, like second or hour, but you typically query metrics rolled up at a coarser grain. The granularity can be set using the `time_granularity` parameter on the metric, and defaults to `day`. If day is not available because the dimension is defined at a coarser granularity, it will default to the defined granularity for the dimension.
+<VersionBlock lastVersion="1.8">
+Default time granularity for metrics is useful if your time dimension has a very fine grain, like second or hour, but you typically query metrics rolled up at a coarser grain. 
+
+Default time granularity for metrics is available now in [the "Latest" release track in dbt Cloud](/docs/dbt-versions/cloud-release-tracks), and it will be available in [dbt Core v1.9+](/docs/dbt-versions/core-upgrade/upgrading-to-v1.9). 
+
+
+</VersionBlock>
+
+<VersionBlock firstVersion="1.9">
+
+It's possible to define a default time granularity for metrics if it's different from the granularity of the default aggregation time dimensions (`metric_time`). This is useful if your time dimension has a very fine grain, like second or hour, but you typically query metrics rolled up at a coarser grain. 
+
+The granularity can be set using the `time_granularity` parameter on the metric, and defaults to `day`. If day is not available because the dimension is defined at a coarser granularity, it will default to the defined granularity for the dimension.
 
 ### Example
 You have a semantic model called `orders` with a time dimension called `order_time`. You want the `orders` metric to roll up to `monthly` by default; however, you want the option to look at these metrics hourly. You can set the `time_granularity` parameter on the `order_time` dimension to `hour`, and then set the `time_granularity` parameter in the metric to `month`.
@@ -117,6 +129,7 @@ semantic_models:
           name: orders
       time_granularity: month -- Optional, defaults to day
 ```
+</VersionBlock>
 
 ## Conversion metrics
 
@@ -258,9 +271,9 @@ metrics:
       measure:
         name: cancellations_usd  # Specify the measure you are creating a proxy for.
         fill_nulls_with: 0
+        join_to_timespine: true
     filter: |
       {{ Dimension('order__value')}} > 100 and {{Dimension('user__acquisition')}} is not null
-    join_to_timespine: true
 ```
 </File>
 
@@ -269,6 +282,8 @@ metrics:
 A filter is configured using Jinja templating. Use the following syntax to reference entities, dimensions, time dimensions, or metrics in filters. 
 
 Refer to [Metrics as dimensions](/docs/build/ref-metrics-in-filters) for details on how to use metrics as dimensions with metric filters:
+
+<VersionBlock firstVersion="1.8">
 
 <File name="models/metrics/file_name.yml" >
 
@@ -283,10 +298,30 @@ filter: |
   {{ TimeDimension('time_dimension', 'granularity') }}
 
 filter: |  
- {{ Metric('metric_name', group_by=['entity_name']) }}  # Available in v1.8 or with [versionless (/docs/dbt-versions/upgrade-dbt-version-in-cloud#versionless) dbt Cloud.
-```
+ {{ Metric('metric_name', group_by=['entity_name']) }}  
 
+```
 </File>
+</VersionBlock>
+
+<VersionBlock lastVersion="1.7">
+
+
+<File name="models/metrics/file_name.yml" >
+
+```yaml
+filter: | 
+  {{ Entity('entity_name') }}
+
+filter: |  
+  {{ Dimension('primary_entity__dimension_name') }}
+
+filter: |  
+  {{ TimeDimension('time_dimension', 'granularity') }}
+
+```
+</File>
+</VersionBlock>
 
 For example, if you want to filter for the order date dimension grouped by month, use the following syntax:
 
