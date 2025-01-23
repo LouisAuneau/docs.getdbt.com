@@ -8,12 +8,12 @@ In dbt Cloud, there are two types of environments:
     - Production
 - **Development environment** &mdash; Determines the settings used in the dbt Cloud IDE or dbt Cloud CLI, for that particular project. 
 
-Each dbt Cloud project can only have a single development environment but can have any number of deployment environments.
+Each dbt Cloud project can only have a single development environment, but can have any number of General deployment environments, one Production deployment environment and one Staging deployment environment.
 
-|| Development  | Staging | Deployment |
-|------| --- | --- | --- |
-| **Determines settings for** | dbt Cloud IDE or dbt Cloud CLI | dbt Cloud Job runs | dbt Cloud Job runs |
-| **How many can I have in my project?** | 1 | Any number | Any number |
+|          | Development | General | Production | Staging |
+|----------|-------------|---------|------------|---------|
+| **Determines settings for** | dbt Cloud IDE or dbt Cloud CLI | dbt Cloud Job runs | dbt Cloud Job runs | dbt Cloud Job runs |
+| **How many can I have in my project?** | 1 | Any number | 1 | 1 |
 
 :::note 
 For users familiar with development on dbt Core, each environment is roughly analogous to an entry in your `profiles.yml` file, with some additional information about your repository to ensure the proper version of code is executed. More info on dbt core environments [here](/docs/core/dbt-core-environments).
@@ -25,11 +25,12 @@ Both development and deployment environments have a section called **General Set
 
 | Setting | Example Value | Definition | Accepted Values |
 | --- | --- | --- | --- |
-| Name | Production  | The environment name  | Any string! |
-| Environment Type | Deployment | The type of environment | [Deployment, Development] |
-| dbt Version | 1.4 (latest) | The dbt version used  | Any dbt version in the dropdown |
-| Default to Custom Branch | ☑️ | Determines whether to use a branch other than the repository’s default  | See below |
-| Custom Branch | dev | Custom Branch name | See below |
+| Environment name | Production  | The environment name  | Any string! |
+| Environment type | Deployment | The type of environment | Deployment, Development|
+| Set deployment type | PROD |  Designates the deployment environment type. | Production, Staging, General | 
+| dbt version | Latest | dbt Cloud automatically upgrades the dbt version running in this environment, based on the [release track](/docs/dbt-versions/cloud-release-tracks) you select. | Lastest, Compatible, Extended |
+| Only run on a custom branch | ☑️ | Determines whether to use a branch other than the repository’s default  | See below |
+| Custom branch | dev | Custom Branch name | See below |
 
 :::note About dbt version
 
