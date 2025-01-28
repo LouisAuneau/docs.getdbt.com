@@ -14,9 +14,9 @@ Connecting your GitLab account to dbt Cloud provides convenience and another lay
 :::info
 When configuring the repository in dbt Cloud, GitLab automatically:
 - Registers a webhook, which triggers pipeline jobs in dbt Cloud.
-- Creates a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) in your GitLab repository, which is used to send the job run status back to Gitlab using the dbt Cloud API for CI Jobs. dbt Cloud automatically refereshes this project access token for you, meaning you never have to manually rotate the token and cause pipeline disruptions.
+- Creates a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) in your GitLab repository, which sends the job run status back to Gitlab using the dbt Cloud API for CI jobs. dbt Cloud automatically refereshes this project access token for you, which means you never have to manually rotate the token.
 
-If you experience any token refresh errors, please try disconnecting and reconnecting the repository in dbt Cloud to refresh the token. 
+
 :::
 
 The steps to integrate GitLab in dbt Cloud depend on your plan. If you are on:
@@ -130,3 +130,14 @@ Once you approve authorization, you will be redirected to dbt Cloud, and you sho
 <FAQ path="Git/gitlab-authentication"/>
 <FAQ path="Git/gitlab-selfhosted"/>
 <FAQ path="Git/git-migration"/>
+<DetailsToggle alt_header="Received a token refresh message">
+
+When you connect dbt Cloud to a GitLab repository, GitLab automatically creates a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) in your GitLab repository in the background. This sends the job run status back to Gitlab using the dbt Cloud API for CI jobs. 
+
+If you're recieving a "Refresh token" message, don't worry &mdash; dbt Cloud automatically refereshes this project access token for you, which means you never have to manually rotate the token.
+
+If you still experience any token refresh errors, please try disconnecting and reconnecting the repository in dbt Cloud to refresh the token. 
+
+For any issues, pleasereach out to the Support team at support@getdbt.com and we'll be happy to help!
+
+</DetailsToggle>
