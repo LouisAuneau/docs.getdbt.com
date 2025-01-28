@@ -10,7 +10,14 @@ Connecting your GitLab account to dbt Cloud provides convenience and another lay
 - Clone repos using HTTPS rather than SSH.
 - Carry GitLab user permissions through to dbt Cloud or dbt Cloud CLI's git actions.
 - Trigger [Continuous integration](/docs/deploy/continuous-integration) builds when merge requests are opened in GitLab.
-  - GitLab automatically registers a webhook in your GitLab repository to enable seamless integration with dbt Cloud.
+
+:::info
+When configuring the repository in dbt Cloud, GitLab automatically:
+- Registers a webhook, which triggers pipeline jobs in dbt Cloud.
+- Creates a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) in your GitLab repository, which is used to send the job run status back to Gitlab using the dbt Cloud API for CI Jobs. dbt Cloud automatically refereshes this project access token for you, meaning you never have to manually rotate the token and cause pipeline disruptions.
+
+If you experience any token refresh errors, please try disconnecting and reconnecting the repository in dbt Cloud to refresh the token. 
+:::
 
 The steps to integrate GitLab in dbt Cloud depend on your plan. If you are on:
 - the Developer or Team plan, read these [instructions](#for-dbt-cloud-developer-and-team-tiers).
