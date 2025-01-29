@@ -5,19 +5,9 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Test <Lifecycle status='enterprise' / >
-
 <Snippet path="what-is-dbt-intro" />
 
 dbt compiles and runs your analytics code against your data platform, enabling you and your team to collaborate on a single source of truth for metrics, insights, and business definitions. This single source of truth, combined with the ability to define tests for your data, reduces errors when logic changes, and alerts you when issues arise.
-- Test text here blah blah blah <Lifecycle status='legacy' / >
-- Test text here blah blah blah  <Lifecycle status='team' / >
-
-<Expandable alt_header="test test" lifecycle='preview'> 
-
-  test
-
-</Expandable>
 
 <Lightbox src="/img/docs/cloud-overview.jpg" width="60%" title="dbt works alongside your ingestion, visualization, and other data tools, so you can transform data directly in your cloud data platform." />
 
@@ -26,13 +16,6 @@ Read more about why we want to enable analysts to work more like software engine
 ## dbt products
 
 Use dbt to quickly and collaboratively transform data and deploy analytics code following software engineering best practices like version control, modularity, portability, CI/CD, and documentation. This means anyone on the data team comfortable with SQL can safely contribute to production-grade data pipelines.
-
-<!-- removing per Leona's feedback and pending review
-To cater to the diverse needs of data teams, dbt offers two primary solutions:
-
-- [**dbt Cloud**](#dbt-cloud) &mdash; A comprehensive, full managed service enabling teams to develop, test, deploy, and explore data products safely and reliably.
-- [**dbt Core**](#dbt-core) &mdash; An open-source CLI tool that's suitable for users who prefer a manual setup.
--->
 
 ### dbt Cloud
 
