@@ -14,7 +14,7 @@ Connecting your GitLab account to dbt Cloud provides convenience and another lay
 :::info
 When configuring the repository in dbt Cloud, GitLab automatically:
 - Registers a webhook, which triggers pipeline jobs in dbt Cloud.
-- Creates a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) in your GitLab repository, which sends the job run status back to GitLab using the dbt Cloud API for CI jobs. dbt Cloud automatically refreshes this token for you, which means you never have to manually rotate it. Check out the [troubleshooting](#troubleshooting) section for more info.
+- Creates a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) in your GitLab repository, which sends the job run status back to GitLab using the dbt Cloud API for CI jobs. dbt Cloud automatically refreshes this token for you, which means you never have to manually rotate it. Check out the [troubleshooting](#troubleshooting) section for more information.
 
 :::
 
