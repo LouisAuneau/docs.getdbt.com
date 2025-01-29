@@ -47,7 +47,7 @@ dbt Explorer uses the metadata provided by the [Discovery API](/docs/dbt-cloud-a
 
 | To view in Explorer | You must successfully run |
 |---------------------|---------------------------|
-| All metadata        | [dbt build](/reference/commands/build) and [dbt docs generate](/reference/commands/cmd-docs) as part of a job in the environment
+| All metadata        |  [dbt build](/reference/commands/build) and [dbt docs generate](/reference/commands/cmd-docs) together as part of a job in the environment
 | Model lineage, details, or results | [dbt run](/reference/commands/run) or [dbt build](/reference/commands/build) on a given model within a job in the environment |
 | Columns and statistics for models, sources, and snapshots| [dbt docs generate](/reference/commands/cmd-docs) within [a job](/docs/collaborate/build-and-view-your-docs) in the environment |
 | Test results | [dbt test](/reference/commands/test) or [dbt build](/reference/commands/build) within a job in the environment |
