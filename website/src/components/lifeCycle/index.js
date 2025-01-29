@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './styles.module.css';
+import { STATUS_URLS } from './lifecycle-urls.js';
 
 const statusColors = {
   enterprise: '#EBEDF0',
@@ -22,15 +23,8 @@ const fontColors = {
   ga: '#ffff',
 };
 
-// URL mapping for predefined lifecycle statuses
-const statusUrls = {
-  enterprise: 'https://www.getdbt.com/pricing',
-  team: 'https://www.getdbt.com/pricing',
-  developer: 'https://www.getdbt.com/signup',
-  beta: 'https://docs.getdbt.com/docs/dbt-versions/product-lifecycles',
-  preview: 'https://docs.getdbt.com/docs/dbt-versions/product-lifecycles',
-  ga: 'https://docs.getdbt.com/docs/dbt-versions/product-lifecycles',
-};
+// URL mapping for predefined lifecycle statuses. urls defined in ../lifeCycle/lifecycle-urls.js file so we can update them in one place
+const statusUrls = STATUS_URLS;
 
 export default function Lifecycle(props) {
   const statuses = props.status?.split(',');
