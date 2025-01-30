@@ -11,6 +11,6 @@ By default, the project access token follows a naming pattern: `dbt Cloud token 
 
 If you're receiving a "Refresh token" message, don't worry &mdash; dbt Cloud automatically refreshes this project access token for you, which means you never have to manually rotate it.
 
-If you still experience any token refresh errors, please try disconnecting and reconnecting the repository in dbt Cloud to refresh the token. 
+If you still experience any token refresh errors, please try disconnecting and reconnecting the repository in your dbt Cloud project to refresh the token. 
 
 For any issues, please reach out to the Support team at support@getdbt.com and we'll be happy to help!
