@@ -826,6 +826,7 @@ Installation of third-party packages on Dataproc varies depending on whether it'
     You can also install packages at cluster creation time by [defining cluster properties](https://cloud.google.com/dataproc/docs/tutorials/python-configuration#image_version_20): `dataproc:pip.packages` or `dataproc:conda.packages`.  
 
 - **Dataproc Serverless** &mdash; Google recommends using a [custom docker image](https://cloud.google.com/dataproc-serverless/docs/guides/custom-containers) to install thrid-party packages. The image needs to be hosted in [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs). It can then be used by providing the image path in dbt profiles:
+    
     <File name='profiles.yml'>
     ```yml
     my-profile:
