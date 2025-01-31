@@ -847,7 +847,6 @@ Installation of third-party packages on Dataproc varies depending on whether it'
                     container_image: {HOSTNAME}/{PROJECT_ID}/{IMAGE}:{TAG}
     ```
 
-</File>
 
 </File>
 
